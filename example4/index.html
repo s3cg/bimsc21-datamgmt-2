@@ -4,14 +4,105 @@
 		<meta charset="utf-8">
 		<title>S1 - Lecture 2 - Example 4</title>
 	</head>
+        <script src="script.css" defer></script>
+        <script src="script_chart.js" defer></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<body>
-        <h1>This is an example of several ways to embed content from other sources</h1>
+        <div id="parent">
+        <h1 style="font-family:monospace;">Manufacture Process</h1>
+        </div>
         <!-- We can embed content from another with several different html elements -->
         <!-- Here is a decent comparison -->
         <!-- https://stackoverflow.com/a/21115112/2179399 -->
-        <h2>iframe element</h2>
-        <iframe src="../example1/" width="500" height="500"></iframe>
-        <h2>embed element</h2>
-        <embed src="../example3.2/" width="500" height="500"></embed>
+        <!--<h2>iframe element</h2> -->
+        <div id='nose'>
+        <div id="map_image">
+                <embed src="../example3.2/" width="53%" height="400"></embed>
+                <iframe src='https://solarsystem.nasa.gov/gltf_embed/2372' width='45%' height='400px' frameborder='0'></iframe>
+                
+        </div>
+        
+        <div id="chart"></div>
+
+        <script>
+                        var options = {
+          series: [
+          {
+            name: "High - 2022",
+            data: [28, 29, 33, 36, 32, 32, 33]
+          },
+          {
+            name: "Low - 2022",
+            data: [12, 11, 14, 18, 17, 13, 13]
+          }
+        ],
+          chart: {
+          height: 350,
+          type: 'line',
+          dropShadow: {
+            enabled: true,
+            color: '#000',
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2
+          },
+          toolbar: {
+            show: false
+          }
+        },
+        colors: ['#c9c9c9', '#545454'],
+        dataLabels: {
+          enabled: true,
+        },
+        stroke: {
+          curve: 'smooth',
+          width: [2, 2, 2]
+        },
+        title: {
+          text: '---',
+          align: 'left'
+        },
+        grid: {
+          borderColor: '#e7e7e7',
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        markers: {
+          size: 1
+        },
+        xaxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+          title: {
+            text: 'Month'
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Temperature'
+          },
+          min: 5,
+          max: 40
+        },
+        legend: {
+          position: 'top',
+          horizontalAlign: 'right',
+          floating: true,
+          offsetY: -25,
+          offsetX: -5
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+      
+      
+        </script>
+        </div>
+
+        </div>
 	</body>
 </html>
